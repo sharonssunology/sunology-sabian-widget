@@ -7,6 +7,8 @@ import { sabianAbsoluteDegreeFromLon } from "../lib/lookup.js";
 import { geocodeToLatLon, latLonToIanaZone, localToUtcISO } from "../lib/timeplace.js";
 
 export default async function handler(req, res) {
+ const testLon = getSunLongitudeDeg("2000-01-01T12:00:00Z");
+console.log("Sun longitude test:", testLon);
   // ---------- GET sanity check ----------
   if (req.method === "GET") {
     return res.status(200).json({ ok: true, endpoint: "/api/sabian" });
