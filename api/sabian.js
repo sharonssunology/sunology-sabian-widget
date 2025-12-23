@@ -66,7 +66,11 @@ export default async function handler(req, res) {
       degreeInSign, // <-- consistent name
       sabian: sabians[absDeg] ?? null,
       interpretation: interpretations[absDeg] ?? null,
-      imageUrl
+      imageUrl,
+  // --- AGPL compliance metadata ---
+      license: "AGPL-3.0-or-later",
+      sourceCodeUrl,
+     commit   
     });
   } catch (e) {
     return res.status(500).json({ error: String(e) });
