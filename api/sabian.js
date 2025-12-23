@@ -7,7 +7,15 @@ import { sabianAbsoluteDegreeFromLon } from "../lib/lookup.js";
 import { geocodeToLatLon, latLonToIanaZone, localToUtcISO } from "../lib/timeplace.js";
 
 export default async function handler(req, res) {
-  // ---- CORS (fix preflight + allow Squarespace later) ----
+   // Quick sanity check in the browser
+  if (req.method === "GET") {
+    return res.status(200).json({ ok: true, endpoint: "/api/sabian" });
+  }
+
+  // Only allow POST (and OPTIONS if you added CORS)
+  if (req.method !== "POST" && req.method !== "OPTIONS") {
+    return res.status(405).json({ error: "Method not allowed" });
+  } // ---- CORS (fix preflight + allow Squarespace later) ----
   const origin = req.headers.origin;
 
   // For now: allow any origin (safe enough while you're developing).
