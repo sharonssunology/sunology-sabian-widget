@@ -1,4 +1,4 @@
-export const SABIAN = {
+export default {
  
   1: "A woman has risen out of the ocean, a seal is embracing her.",
   2: "A comedian entertaining the group.",
