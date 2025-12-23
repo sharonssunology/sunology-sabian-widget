@@ -1,0 +1,21 @@
+Sunology Sabian API
+Copyright (c) 2025 Sharon Moore
+
+This project is licensed under the GNU Affero General Public License,
+version 3 or later (AGPL-3.0-or-later).
+
+This software uses the Swiss Ephemeris astronomical calculation
+library via the "sweph" bindings for Node.js.
+
+Swiss Ephemeris is copyright © Astrodienst AG, Switzerland
+and is distributed under the AGPL or a commercial license.
+
+This project elects to use Swiss Ephemeris under the terms of the
+GNU Affero General Public License.
+
+Swiss Ephemeris data files (.se1, .se2, .sepl, etc.) are used
+server-side only and are not redistributed to end users.
+
+Source code for this project, as required under AGPL Section 13,
+is available at:
+https://github.com/sharonssunology
