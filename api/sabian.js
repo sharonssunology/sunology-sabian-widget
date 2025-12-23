@@ -17,17 +17,23 @@ export default async function handler(req, res) {
     const zone = latLonToIanaZone(lat, lon);
     const utcISO = localToUtcISO(date, time, zone); // "YYYY-MM-DDTHH:mm:ssZ"
 
-    const sunLon = await getSunLongitudeDeg(utcISO); // Swiss Ephemeris
-    const absDeg = sabianAbsoluteDegreeFromLon(sunLon);
+const sunLon = await getSunLongitudeDeg(utcISO);
+const absDeg = sabianAbsoluteDegreeFromLon(sunLon);
 
-    return res.status(200).json({
-      utcISO,
-      sunLon,
-      absDeg,
-      sabian: sabians[absDeg] ?? null,
-      interpretation: interpretations[absDeg] ?? null,
-      image: images[absDeg] ?? null
-    });
+const imageFile = images[absDeg] ?? null;
+const imageUrl = imageFile
+  ? `/symbol-images/${imageFile}`
+  : null;
+
+return res.status(200).json({
+  utcISO,
+  sunLon,
+  absDeg,
+  sabian: sabians[absDeg] ?? null,
+  interpretation: interpretations[absDeg] ?? null,
+  imageUrl
+});
+
 
   } catch (e) {
     return res.status(500).json({ error: String(e) });
