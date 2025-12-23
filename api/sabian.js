@@ -61,14 +61,17 @@ export default async function handler(req, res) {
 
 const imageUrl = imageFile ? `${baseUrl}/symbol-images/${imageFile}` : null;
 
-    return res.status(200).json({
-      utcISO,
-      sunLon,
-      absDeg,
-      sabian: sabians[absDeg] ?? null,
-      interpretation: interpretations[absDeg] ?? null,
-      imageUrl
-    });
+return res.status(200).json({
+  utcISO,
+  sunLon,
+  absDeg,
+  sign,
+  degInSign: degreeInSign,
+  sabian: sabians[absDeg] ?? null,
+  interpretation: interpretations[absDeg] ?? null,
+  imageUrl
+});
+
   } catch (e) {
     return res.status(500).json({ error: String(e) });
   }
