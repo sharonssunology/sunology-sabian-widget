@@ -51,8 +51,11 @@ export default async function handler(req, res) {
     const imageFile = images[absDeg] ?? null;
 
     // Absolute URL for Squarespace
-    const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
-    const imageUrl = imageFile ? `${baseUrl}/symbol-images/${imageFile}` : null;
+    const baseUrl =
+  process.env.PUBLIC_BASE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "");
+
+const imageUrl = imageFile ? `${baseUrl}/symbol-images/${imageFile}` : null;
 
     return res.status(200).json({
       utcISO,
