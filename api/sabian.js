@@ -56,7 +56,8 @@ export default async function handler(req, res) {
       (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "");
 
     const imageUrl = imageFile ? `${baseUrl}/symbol-images/${imageFile}` : null;
-
+    const sourceCodeUrl = process.env.PUBLIC_SOURCE_URL || null;
+    const commit = process.env.PUBLIC_COMMIT || null;
     return res.status(200).json({
       utcISO,
       sunLon,
