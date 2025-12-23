@@ -7,30 +7,32 @@ import { sabianAbsoluteDegreeFromLon } from "../lib/lookup.js";
 import { geocodeToLatLon, latLonToIanaZone, localToUtcISO } from "../lib/timeplace.js";
 
 export default async function handler(req, res) {
-   // Quick sanity check in the browser
+  // ---------- GET sanity check ----------
   if (req.method === "GET") {
     return res.status(200).json({ ok: true, endpoint: "/api/sabian" });
   }
 
-  // Only allow POST (and OPTIONS if you added CORS)
-  if (req.method !== "POST" && req.method !== "OPTIONS") {
-    return res.status(405).json({ error: "Method not allowed" });
-  } // ---- CORS (fix preflight + allow Squarespace later) ----
+  // ---------- CORS (must be before method guard) ----------
   const origin = req.headers.origin;
 
-  // For now: allow any origin (safe enough while you're developing).
-  // Later, we can lock this down to your Squarespace domains.
-  res.setHeader("Access-Control-Allow-Origin", origin || "*");
+  // about:blank sends Origin: "null" (string). Treat that as "*".
+  const allowOrigin = (!origin || origin === "null") ? "*" : origin;
+
+  res.setHeader("Access-Control-Allow-Origin", allowOrigin);
   res.setHeader("Vary", "Origin");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.setHeader("Access-Control-Max-Age", "86400");
 
-  // Handle the preflight request
+  // Preflight
   if (req.method === "OPTIONS") {
     return res.status(204).end();
   }
-  // -------------------------------------------------------
+
+  // ---------- Method guard ----------
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
   try {
     const { date, time, place } = req.body || {};
@@ -40,14 +42,14 @@ export default async function handler(req, res) {
 
     const { lat, lon } = await geocodeToLatLon(place);
     const zone = latLonToIanaZone(lat, lon);
-    const utcISO = localToUtcISO(date, time, zone); // "YYYY-MM-DDTHH:mm:ssZ"
+    const utcISO = localToUtcISO(date, time, zone);
 
     const sunLon = await getSunLongitudeDeg(utcISO);
     const absDeg = sabianAbsoluteDegreeFromLon(sunLon);
 
     const imageFile = images[absDeg] ?? null;
 
-    // IMPORTANT: return an absolute URL so Squarespace can load it
+    // Absolute URL for Squarespace
     const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
     const imageUrl = imageFile ? `${baseUrl}/symbol-images/${imageFile}` : null;
 
