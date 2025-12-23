@@ -51,7 +51,7 @@ export default async function handler(req, res) {
 
     const sunLon = await getSunLongitudeDeg(utcISO);
     const absDeg = sabianAbsoluteDegreeFromLon(sunLon);
-
+    const { sign, degreeInSign } = signAndDegreeFromAbsolute(absDeg);
     const imageFile = images[absDeg] ?? null;
 
     // Absolute URL for Squarespace
