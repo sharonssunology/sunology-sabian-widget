@@ -1,4 +1,4 @@
- module.exports = {
+export default {
   1: "A raw impulse rises from nothing, claiming its first breath of becoming. Pure awareness snaps awake, driving instinctual movement into form.Directionless passion erupts forward, announcing the birth of self.",
   2: "A spark of recognition flashes as you it feels like you meet the world for the first time. The self sharpens against contrast, discovering identity through reflection. Laughter rises like sunlight, affirming that your presence makes the room come alive.",
   3: "A clear outline of self begins to form, asking you to honor what is becoming unmistakably yours. Be cautious of clinging to roles or reflections that limit the truth of who you are. Stand in the shape that feels real, and let the world reflect a yes where your purpose is already carved.",
