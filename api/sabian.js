@@ -1,3 +1,7 @@
+import { 
+  sabianAbsoluteDegreeFromLon,
+  signAndDegreeFromAbsolute
+} from "../lib/lookup.js";
 import sabians from "../data/sabians.js";
 import interpretations from "../data/interpretations.js";
 import images from "../data/images.js";
