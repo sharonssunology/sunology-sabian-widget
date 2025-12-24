@@ -8,7 +8,7 @@ This software uses the Swiss Ephemeris astronomical calculation
 library via the "sweph" bindings for Node.js.
 
 Swiss Ephemeris is copyright © Astrodienst AG, Switzerland
-and is distributed under the AGPL or a commercial license.
+and is distributed under the AGPL license.
 
 This project elects to use Swiss Ephemeris under the terms of the
 GNU Affero General Public License.
@@ -18,4 +18,4 @@ server-side only and are not redistributed to end users.
 
 Source code for this project, as required under AGPL Section 13,
 is available at:
-https://github.com/sharonssunology
+https://github.com/sharonssunology/sunology-sabian-widget.
