@@ -1,4 +1,4 @@
-# Sunology Sabian API
+# Sunology Sabian Widget API
 
 This repository contains the server-side code for the Sunology Sabian Symbol API,
 which calculates the Sun’s zodiacal degree and returns the corresponding Sabian
@@ -16,7 +16,7 @@ version 3 or later (AGPL-3.0-or-later).
 In accordance with AGPL Section 13, the complete corresponding source code for
 the running service is made available at:
 
-https://github.com/sharonssunology
+https://github.com/sharonssunology/sunology-sabian-widget.
 
 Additional licensing and attribution information can be found in the `NOTICE`
 file.
